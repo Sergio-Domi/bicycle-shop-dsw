@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { BicycleService } from "./bicycle.service";
+import { BrandService } from "./brand.service";
 
-export class BicycleController {
+export class BrandController {
 
   static async getAll(
     req: Request,
@@ -9,9 +9,9 @@ export class BicycleController {
     next: NextFunction
   ) {
     try {
-      const bicycles = await BicycleService.findAll();
+      const brands = await BrandService.findAll();
 
-      res.json(bicycles);
+      res.json(brands);
     } catch (error) {
       next(error);
     }
@@ -26,17 +26,17 @@ export class BicycleController {
     try {
       const id = Number(req.params.id);
 
-      const bicycle = await BicycleService.findById(id);
+      const brand = await BrandService.findById(id);
 
-      if (!bicycle) {
+      if (!brand) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Marca no encontrada",
         });
 
         return;
       }
 
-      res.json(bicycle);
+      res.json(brand);
 
     } catch (error) {
       next(error);
@@ -50,25 +50,22 @@ export class BicycleController {
     next: NextFunction
   ) {
     try {
-      const { brandId, model, description, price, stock } = req.body;
+      const { name } = req.body;
 
-      if (!brandId || !model || price === undefined) {
+      if (!name) {
         res.status(400).json({
-          message: "brand, model y price son obligatorios",
+          message: "Name es obligatorio",
         });
 
         return;
       }
 
-      const bicycle = await BicycleService.create({
-        brandId,
-        model,
-        description,
-        price,
-        stock,
+      const brand = await BrandService.create({
+        name,
+
       });
 
-      res.status(201).json(bicycle);
+      res.status(201).json(brand);
 
     } catch (error) {
       next(error);
@@ -84,22 +81,22 @@ export class BicycleController {
     try {
       const id = Number(req.params.id);
 
-      const bicycle = await BicycleService.findById(id);
+      const brand = await BrandService.findById(id);
 
-      if (!bicycle) {
+      if (!brand) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Marca no encontrada",
         });
 
         return;
       }
 
-      const updatedBicycle = await BicycleService.update(
-        bicycle,
+      const updatedBrand = await BrandService.update(
+        brand,
         req.body
       );
 
-      res.json(updatedBicycle);
+      res.json(updatedBrand);
 
     } catch (error) {
       next(error);
@@ -115,17 +112,17 @@ export class BicycleController {
     try {
       const id = Number(req.params.id);
 
-      const bicycle = await BicycleService.findById(id);
+      const brand = await BrandService.findById(id);
 
-      if (!bicycle) {
+      if (!brand) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Marca no encontrada",
         });
 
         return;
       }
 
-      await BicycleService.delete(bicycle);
+      await BrandService.delete(brand);
 
       res.status(204).send();
 

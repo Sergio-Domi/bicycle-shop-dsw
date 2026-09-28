@@ -15,7 +15,7 @@ export class BicycleService {
 
 
   static async create(data: {
-    brand: string;
+    brandId: number;
     model: string;
     description?: string | null;
     price: number;
@@ -28,7 +28,7 @@ export class BicycleService {
   static async update(
     bicycle: Bicycle,
     data: {
-      brand?: string;
+      brandId?: number;
       model?: string;
       description?: string | null;
       price?: number;

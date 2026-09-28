@@ -4,6 +4,7 @@ import { env } from "./config/env";
 
 // Importamos los modelos para que Sequelize los registre.
 import "./modules/bicycles/bicycle.model";
+import "./modules/brands/brand.model";
 
 async function startServer() {
   try {
@@ -12,9 +13,12 @@ async function startServer() {
 
     console.log("Conexión con MySQL establecida.");
 
-    await sequelize.sync();
+    // await sequelize.sync();
 
-    console.log("Modelos sincronizados.");
+    await sequelize.sync({ force: true }).then (() => {
+      console.log("Modelos sincronizados.");
+    });
+
 
     app.listen(env.PORT, () => {
       console.log(
