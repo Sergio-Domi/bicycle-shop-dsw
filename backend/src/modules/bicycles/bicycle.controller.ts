@@ -30,7 +30,7 @@ export class BicycleController {
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;
@@ -88,7 +88,7 @@ export class BicycleController {
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;
@@ -119,7 +119,7 @@ export class BicycleController {
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;

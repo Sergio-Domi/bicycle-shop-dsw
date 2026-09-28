@@ -5,6 +5,6 @@ export function notFoundMiddleware(
   res: Response
 ) {
   res.status(404).json({
-    message: "Ruta no encontrada",
+    message: "Route not found",
   });
 }

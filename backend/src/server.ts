@@ -11,25 +11,25 @@ async function startServer() {
 
     await sequelize.authenticate();
 
-    console.log("Conexión con MySQL establecida.");
+    console.log("Connection with MySQL established.");
 
     // await sequelize.sync();
 
     await sequelize.sync({ force: true }).then (() => {
-      console.log("Modelos sincronizados.");
+      console.log("Synchronized models.");
     });
 
 
     app.listen(env.PORT, () => {
       console.log(
-        `Servidor funcionando en http://localhost:${env.PORT}`
+        `Server running at http://localhost:${env.PORT}`
       );
     });
 
   } catch (error) {
 
     console.error(
-      "No se pudo iniciar la aplicación:",
+      "The application could not be started:",
       error
     );
 
