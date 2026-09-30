@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { BicycleService } from "./bicycle.service";
+import { BicycleDetailService } from "./bicycle-detail.service";
 
-export class BicycleController {
+export class BicycleDetailController {
 
   static async getAll(
     req: Request,
@@ -9,7 +9,7 @@ export class BicycleController {
     next: NextFunction
   ) {
     try {
-      const bicycles = await BicycleService.findAll();
+      const bicycles = await BicycleDetailService.findAll();
 
       res.json(bicycles);
     } catch (error) {
@@ -26,40 +26,22 @@ export class BicycleController {
     try {
       const id = Number(req.params.id);
 
-      const bicycle = await BicycleService.findById(id);
+      const bicycledetail = await BicycleDetailService.findById(id);
 
-      if (!bicycle) {
+      if (!bicycledetail) {
         res.status(404).json({
-          message: "Bicycle not found",
+          message: "BicycleDetail not found",
         });
 
         return;
       }
 
-      res.json(bicycle);
+      res.json(bicycledetail);
 
     } catch (error) {
       next(error);
     }
   }
-
-
-static async getAllEagerlyByFrameMaterial(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
-    try {
-      const frameMaterial = String(req.params.frameMaterial);
-      const bicycles = await BicycleService.findAllEagerlyByFrameMaterial(frameMaterial);
-
-      res.json(bicycles);
-    } catch (error) {
-      next(error);
-    }
-  }
-
-
 
 static async getEagerlyById(
     req: Request,
@@ -69,16 +51,16 @@ static async getEagerlyById(
     try {
       const id = Number(req.params.id);
 
-      const bicycle = await BicycleService.findEagerlyById(id);
+      const bicycledetail = await BicycleDetailService.findEagerlyById(id);
 
-      if (!bicycle) {
+      if (!bicycledetail) {
         res.status(404).json({
-          messsage: "Bicycle not found",
+          message: "BicycleDetail not found",
         });
 
         return;
       }
-      res.json(bicycle);
+      res.json(bicycledetail);
 
     } catch (error) {
       next(error)
@@ -91,25 +73,25 @@ static async getEagerlyById(
     next: NextFunction
   ) {
     try {
-      const { brandId, model, description, price, stock } = req.body;
+      const { bicycleId, frameMaterial, wheelSize, weight, suspension } = req.body;
 
-      if (!brandId || !model || price === undefined) {
+      if (!bicycleId || !frameMaterial || !wheelSize || !weight) {
         res.status(400).json({
-          message: "brand, model, and price are mandatory",
+          message: "bicycleId, frameMaterial, wheelSize, and weight are mandatory",
         });
 
         return;
       }
 
-      const bicycle = await BicycleService.create({
-        brandId,
-        model,
-        description,
-        price,
-        stock,
+      const bicycledetail = await BicycleDetailService.create({
+        bicycleId: bicycleId,
+        frameMaterial,
+        wheelSize,
+        weight,
+        suspension,
       });
 
-      res.status(201).json(bicycle);
+      res.status(201).json(bicycledetail);
 
     } catch (error) {
       next(error);
@@ -125,22 +107,22 @@ static async getEagerlyById(
     try {
       const id = Number(req.params.id);
 
-      const bicycle = await BicycleService.findById(id);
+      const bicycledetail = await BicycleDetailService.findById(id);
 
-      if (!bicycle) {
+      if (!bicycledetail) {
         res.status(404).json({
-          message: "Bicycle not found",
+          message: "BicycleDetail not found",
         });
 
         return;
       }
 
-      const updatedBicycle = await BicycleService.update(
-        bicycle,
+      const updatedBicycleDetail = await BicycleDetailService.update(
+        bicycledetail,
         req.body
       );
 
-      res.json(updatedBicycle);
+      res.json(updatedBicycleDetail);
 
     } catch (error) {
       next(error);
@@ -156,17 +138,17 @@ static async getEagerlyById(
     try {
       const id = Number(req.params.id);
 
-      const bicycle = await BicycleService.findById(id);
+      const bicycledetail = await BicycleDetailService.findById(id);
 
-      if (!bicycle) {
+      if (!bicycledetail) {
         res.status(404).json({
-          message: "Bicycle not found",
+          message: "BicycleDetail not found",
         });
 
         return;
       }
 
-      await BicycleService.delete(bicycle);
+      await BicycleDetailService.delete(bicycledetail);
 
       res.status(204).send();
 
