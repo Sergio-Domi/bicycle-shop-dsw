@@ -5,6 +5,8 @@ const router = Router();
 
 router.get("/", BicycleController.getAll);
 
+router.get("/eagerly/frame-material/:frameMaterial", BicycleController.getAllEagerlyByFrameMaterial);
+
 router.get("/:id", BicycleController.getById);
 
 router.get("/eagerly/:id", BicycleController.getEagerlyById);
