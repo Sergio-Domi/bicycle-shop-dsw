@@ -11,20 +11,20 @@ export class BicycleService {
   }
 
   static async findAllEagerlyByFrameMaterial(frameMaterial: string) {
-      return Bicycle.findAll({
-        include: [
-          {
-            model: BicycleDetail,
-            as: 'detail',
-            where: {
-              frameMaterial
-            }
-      
+    return Bicycle.findAll({
+      include: [
+        {
+          model: BicycleDetail,
+          as: 'detail',
+          where: {
+            frameMaterial
           }
-        ],
-        order: [["id", "ASC"]],
-      });
-    }
+
+        }
+      ],
+      order: [["id", "ASC"]],
+    });
+  }
 
   static async findById(id: number) {
     return Bicycle.findByPk(id);
