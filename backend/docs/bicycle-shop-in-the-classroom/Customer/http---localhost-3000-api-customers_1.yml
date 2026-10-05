@@ -1,0 +1,25 @@
+info:
+  name: http://localhost:3000/api/customers_1
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:3000/api/customers
+  body:
+    type: json
+    data: "{\r
+
+      \  \"name\": \"darthvader\",\r
+
+      \  \"email\": \"elpadreoscuro@gmail.com\"\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
