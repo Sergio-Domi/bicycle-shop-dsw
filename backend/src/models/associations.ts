@@ -10,7 +10,7 @@ export function defineAssociations() {
     Bicycle.hasOne(BicycleDetail, {
         foreignKey: "bicycleId", as: "detail", onDelete: "CASCADE"
     });
-    BicycleDetail.belongsTo(Bicycle,{
+    BicycleDetail.belongsTo(Bicycle, {
         foreignKey: "bicycleId", as: "bicycle"
     })
     Customer.hasMany(Order, { foreignKey: "customerId", as: "orders" });

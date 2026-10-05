@@ -44,7 +44,7 @@ export class BicycleController {
   }
 
 
-static async getAllEagerlyByFrameMaterial(
+  static async getAllEagerlyByFrameMaterial(
     req: Request,
     res: Response,
     next: NextFunction
@@ -61,7 +61,7 @@ static async getAllEagerlyByFrameMaterial(
 
 
 
-static async getEagerlyById(
+  static async getEagerlyById(
     req: Request,
     res: Response,
     next: NextFunction
