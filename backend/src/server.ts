@@ -8,6 +8,8 @@ import { defineAssociations } from "./models/associations";
 import "./modules/bicycles/bicycle.model";
 import "./modules/brands/brand.model";
 import "./modules/bicycle-details/bicycle-detail.model";
+import "./modules/customers/customer.model";
+import "./modules/orders/order.model";
 
 async function startServer() {
   try {
