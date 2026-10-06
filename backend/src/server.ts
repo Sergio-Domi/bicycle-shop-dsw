@@ -10,6 +10,7 @@ import "./modules/brands/brand.model";
 import "./modules/bicycle-details/bicycle-detail.model";
 import "./modules/customers/customer.model";
 import "./modules/orders/order.model";
+import "./modules/order-items/order-item.model";
 
 async function startServer() {
   try {
