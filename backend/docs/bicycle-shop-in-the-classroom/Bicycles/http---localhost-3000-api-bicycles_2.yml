@@ -8,19 +8,14 @@ http:
   url: http://localhost:3000/api/bicycles
   body:
     type: json
-    data: "{\r
-
-      \  \"brandId\": \"1\",\r
-
-      \  \"model\": \"Sky\",\r
-
-      \  \"description\": \"Great for any occassion\",\r
-
-      \  \"price\": 189.99,\r
-
-      \  \"stock\": 10\r
-
-      }"
+    data: |-
+      {
+        "brandId": "1",
+        "modelId": "1",
+        "description": "Great for any occassion",
+        "price": 80,
+        "stock": 10
+      }
   auth: inherit
 
 settings:

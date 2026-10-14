@@ -11,6 +11,7 @@ import "./modules/bicycle-details/bicycle-detail.model";
 import "./modules/customers/customer.model";
 import "./modules/orders/order.model";
 import "./modules/order-items/order-item.model";
+import "./modules/models/model.model";
 
 async function startServer() {
   try {
