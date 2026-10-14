@@ -58,6 +58,16 @@ export class OrderController {
     }
   }
 
+  static async getWithCheapAndHeavyBicycles(req: Request, res: Response, next: NextFunction) {
+    try {
+      const maxPrice = Number(req.params.price);
+      const minWeight = Number(req.params.weight);
+      const orders = await OrderService.findWithCheapAndHeavyBicycles(maxPrice, minWeight);
+      res.json(orders);
+    } catch (error) {
+      next(error);
+    }
+  }
 
 
   static async create(

@@ -16,7 +16,7 @@ export class Bicycle extends Model<
 
   declare brandId: number;
 
-  declare model: string;
+  declare modelId: number;
 
   declare description: string | null;
 
@@ -45,11 +45,14 @@ Bicycle.init(
       onDelete: "RESTRICT",
     },
 
-
-    model: {
-      type: DataTypes.STRING(150),
+    modelId: {
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
+      references: { model: "models", key: "id" },
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
     },
+
 
     description: {
       type: DataTypes.TEXT,

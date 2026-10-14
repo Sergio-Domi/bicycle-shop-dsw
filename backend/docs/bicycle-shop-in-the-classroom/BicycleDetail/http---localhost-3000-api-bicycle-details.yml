@@ -8,19 +8,14 @@ http:
   url: http://localhost:3000/api/bicycle-details
   body:
     type: json
-    data: "{\r
-
-      \  \"bicycleId\": 1,\r
-
-      \  \"frameMaterial\": \"Carbon\",\r
-
-      \  \"wheelSize\": 29,\r
-
-      \  \"weight\": 8.5,\r
-
-      \  \"suspension\": \"Front\"\r
-
-      }"
+    data: |-
+      {
+        "bicycleId": 1,
+        "frameMaterial": "Carbon",
+        "wheelSize": 29,
+        "weight": 22.5,
+        "suspension": "Front"
+      }
   auth: inherit
 
 settings:

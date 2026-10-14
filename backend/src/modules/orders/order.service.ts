@@ -1,5 +1,8 @@
 import { Customer } from "../customers/customer.model";
 import { Order } from "./order.model";
+import { Bicycle } from "../bicycles/bicycle.model";
+import { BicycleDetail } from "../bicycle-details/bicycle-detail.model";
+import { Op } from "sequelize";
 
 export class OrderService {
 
@@ -22,6 +25,30 @@ export class OrderService {
       order: [["orderDate", "DESC"]],
     });
   }
+
+  static async findWithCheapAndHeavyBicycles(maxPrice: number, minWeight: number) {
+    return Order.findAll({
+      include: [
+        {
+          model: Bicycle,
+          as: "bicycles",
+          where: { price: { [Op.lt]: maxPrice } },
+          required: true,
+          include: [
+            {
+              model: BicycleDetail,
+              as: "detail",
+              where: { weight: { [Op.gt]: minWeight } },
+              required: true,
+            },
+          ],
+        },
+      ],
+      order: [["id", "ASC"]],
+    });
+  }
+
+
 
   static async create(data: {
     customerId: number;

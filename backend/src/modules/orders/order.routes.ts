@@ -6,6 +6,8 @@ router.get("/", OrderController.getAll);
 
 router.get("/customers/:id", OrderController.getByCustomerId);
 
+router.get("/bicycles/price-less/:price/weight-greater/:weight", OrderController.getWithCheapAndHeavyBicycles);
+
 router.get("/:id", OrderController.getById);
 
 router.post("/", OrderController.create);
