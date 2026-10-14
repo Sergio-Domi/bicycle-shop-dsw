@@ -3,11 +3,20 @@ import { BicycleController } from "./bicycle.controller";
 
 const router = Router();
 
+
+router.get("/brand-and-model", BicycleController.getAllWithBrandAndModel);
+
+router.get("/price-greater-than/:price", BicycleController.getByPriceGreaterThan);
+
 router.get("/", BicycleController.getAll);
+
+router.get("/eagerly/frame-material/:frameMaterial", BicycleController.getAllEagerlyByFrameMaterial);
 
 router.get("/:id", BicycleController.getById);
 
 router.get("/eagerly/:id", BicycleController.getEagerlyById);
+
+
 
 router.post("/", BicycleController.create);
 

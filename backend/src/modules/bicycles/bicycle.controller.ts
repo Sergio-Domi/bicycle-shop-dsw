@@ -43,7 +43,48 @@ export class BicycleController {
     }
   }
 
-static async getEagerlyById(
+
+  static async getAllEagerlyByFrameMaterial(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const frameMaterial = String(req.params.frameMaterial);
+      const bicycles = await BicycleService.findAllEagerlyByFrameMaterial(frameMaterial);
+
+      res.json(bicycles);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getAllWithBrandAndModel(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const bicycles = await BicycleService.findAllWithBrandAndModel();
+      res.json(bicycles);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
+  static async getByPriceGreaterThan(req: Request, res: Response, next: NextFunction) {
+    try {
+      const price = Number(req.params.price);
+      const bicycles = await BicycleService.findByPriceGreaterThan(price);
+      res.json(bicycles);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
+  static async getEagerlyById(
     req: Request,
     res: Response,
     next: NextFunction
@@ -73,11 +114,11 @@ static async getEagerlyById(
     next: NextFunction
   ) {
     try {
-      const { brandId, model, description, price, stock } = req.body;
+      const { brandId, modelId, description, price, stock } = req.body;
 
-      if (!brandId || !model || price === undefined) {
+      if (!brandId || !modelId || price === undefined) {
         res.status(400).json({
-          message: "brand, model, and price are mandatory",
+          message: "brand, modelId, and price are mandatory",
         });
 
         return;
@@ -85,7 +126,7 @@ static async getEagerlyById(
 
       const bicycle = await BicycleService.create({
         brandId,
-        model,
+        modelId,
         description,
         price,
         stock,

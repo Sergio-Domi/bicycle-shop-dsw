@@ -7,6 +7,11 @@ import { defineAssociations } from "./models/associations";
 // Importamos los modelos para que Sequelize los registre.
 import "./modules/bicycles/bicycle.model";
 import "./modules/brands/brand.model";
+import "./modules/bicycle-details/bicycle-detail.model";
+import "./modules/customers/customer.model";
+import "./modules/orders/order.model";
+import "./modules/order-items/order-item.model";
+import "./modules/models/model.model";
 
 async function startServer() {
   try {
